@@ -19,7 +19,7 @@ jobs:
         
     - run: git clone https://github.com/leollo98/Infra_CI_Kubernetes.git
 
-
+    # terraform
     - name: HashiCorp - Setup Terraform
       uses: hashicorp/setup-terraform@v2.0.3
 
