@@ -17,6 +17,17 @@ jobs:
         aws-secret-access-key: ${{ secrets.CHAVE_SECRETA }}
         aws-region: us-east-2
         
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name cluster-eks-producao --region us-east-2
+
+    - name: Create image pull secret
+      run: |
+        kubectl delete secret regcred --ignore-not-found
+        kubectl create secret docker-registry regcred \
+          --docker-server=https://index.docker.io/v1/ \
+          --docker-username=leonardodebs \
+          --docker-password=${{ secrets.PASSWORD_DOCKER_HUB }}
+
     - run: git clone https://github.com/leollo98/Infra_CI_Kubernetes.git
 
     # terraform setup

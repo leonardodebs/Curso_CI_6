@@ -26,8 +26,8 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: Go
-        image: leonardosartorello/go_ci:${{github.run_number}}
+        container-name: Go # Make sure this matches the container name in your task definition
+        image: leonardodebs/go_ci:${{github.run_number}}
         environment-variables: |
           HOST=${{ secrets.DBHOST }}
           USER=${{ secrets.DBUSER }}
